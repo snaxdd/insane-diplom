@@ -3,7 +3,8 @@
 const toggleMenu = () => {
   const menuIcon = document.querySelector('.menu__icon'),
     menuPopup = document.querySelector('.popup.popup-menu'),
-    menuDialog = menuPopup.querySelector('.popup-dialog-menu');
+    menuDialog = menuPopup.querySelector('.popup-dialog-menu'),
+    scrollTopBtn = document.querySelector('.button-footer');
 
   let resolution = window.innerWidth;
   
@@ -27,6 +28,30 @@ const toggleMenu = () => {
     }
   };
 
+  const scrollToId = event => {
+    event.preventDefault();
+    let target = event.target,
+      blockId = null;
+
+    if (target.className === 'menu-link') {
+      blockId = target.getAttribute('href').substr(1);
+
+      document.getElementById(blockId).scrollIntoView({
+        behavior: 'smooth'
+      });
+
+      closeMenu();
+    } else if (target.closest('.button-footer')) {
+      target = target.closest('.button-footer');
+      
+      blockId = target.firstChild.getAttribute('href').substr(1);
+
+      document.getElementById(blockId).scrollIntoView({
+        behavior: 'smooth'
+      });
+    }
+  };
+
   window.addEventListener('resize', () => {
     resolution = window.innerWidth;
 
@@ -44,8 +69,12 @@ const toggleMenu = () => {
 
     if (target.className === 'close close-menu') {
       closeMenu();
+    } else {
+      scrollToId(event);
     }
   });
+
+  scrollTopBtn.addEventListener('click', scrollToId);
 };
 
 toggleMenu();
