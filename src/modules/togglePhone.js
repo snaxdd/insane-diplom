@@ -1,25 +1,25 @@
 'use strict';
+const secondPhone = document.querySelector('.header-contacts__phone-number-accord'),
+      secondPhoneLink = secondPhone.querySelector('.header-contacts__phone-number');
 
-const togglePhone = () => {
-  const toggleArrow = document.querySelector('.header-contacts__arrow'),
-    secondPhone = document.querySelector('.header-contacts__phone-number-accord'),
-    secondPhoneLink = secondPhone.querySelector('.header-contacts__phone-number');
+class TogglePhone {
+  constructor(secondPhone, secondPhoneLink) {
+    this.toggleFlag = false;
+    this.secondPhone = secondPhone;
+    this.secondPhoneLink = secondPhoneLink;
+  }
 
-  let flag = false;
+  hide() {
+    this.secondPhone.style.top = '0%';
+    this.secondPhoneLink.style.opacity = '0';
+  }
 
-  const showPhone = () => {
-    if (!flag) {
-      secondPhone.style.top = '100%';
-      secondPhoneLink.style.opacity = '100';
-      flag = true;
-    } else {
-      secondPhone.style.top = '0%';
-      secondPhoneLink.style.opacity = '0';
-      flag = false;
-    }
-  };
+  show() {
+    this.secondPhone.style.top = '100%';
+    this.secondPhoneLink.style.opacity = '100';
+  }
+}
 
-  toggleArrow.addEventListener('click', showPhone);
-};
+const toggle = new TogglePhone(secondPhone, secondPhoneLink);
 
-togglePhone();
+export default toggle;
