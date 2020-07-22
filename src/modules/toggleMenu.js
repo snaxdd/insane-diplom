@@ -1,8 +1,6 @@
 'use strict';
 
-const menuIcon = document.querySelector('.menu__icon'),
-    menuPopup = document.querySelector('.popup.popup-menu'),
-    menuDialog = menuPopup.querySelector('.popup-dialog-menu');
+import domElems from './DOMElements';
 
 class Menu {
   constructor(menuPopup, menuDialog, menuIcon) {
@@ -33,6 +31,6 @@ class Menu {
   }
 }
 
-const menu = new Menu(menuPopup, menuDialog, menuIcon);
+const menu = new Menu(domElems.menu.popup, domElems.menu.dialog, domElems.menu.icon);
 
 export default menu;

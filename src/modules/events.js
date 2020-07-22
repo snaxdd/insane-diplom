@@ -3,6 +3,7 @@
 import toggle from './togglePhone';
 import menu from './toggleMenu';
 import smoothScroll from './smoothScroll';
+import repairModal from './repairModal';
 
 document.body.addEventListener('click', event => {
   let target = event.target;
@@ -38,10 +39,19 @@ document.body.addEventListener('click', event => {
     target = target.closest('.button-footer');
     smoothScroll(target.firstChild);
   }
+
+  //Show popup-repair-types
+  if (target.closest('.link-list-repair')) {
+    repairModal.show();
+    menu.hide();
+  } else if (target.closest('.close-repair')) {
+    repairModal.hide();
+  }
 });
 
 window.addEventListener('resize', () => {
   menu.resolution = window.innerWidth;
+  menu.menuPopup.style.visibility = 'hidden';
 
   if (menu.resolution > 576) {
     menu.menuDialog.style.transform = 'translate3d(100%, 0, 0)';

@@ -1,9 +1,12 @@
 'use strict';
-const secondPhone = document.querySelector('.header-contacts__phone-number-accord'),
-      secondPhoneLink = secondPhone.querySelector('.header-contacts__phone-number');
+
+import domElems from './DOMElements';
 
 class TogglePhone {
-  constructor(secondPhone, secondPhoneLink) {
+  constructor({
+    secondPhone,
+    secondPhoneLink
+  }) {
     this.toggleFlag = false;
     this.secondPhone = secondPhone;
     this.secondPhoneLink = secondPhoneLink;
@@ -20,6 +23,6 @@ class TogglePhone {
   }
 }
 
-const toggle = new TogglePhone(secondPhone, secondPhoneLink);
+const toggle = new TogglePhone(domElems.phone);
 
 export default toggle;
