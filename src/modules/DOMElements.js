@@ -15,6 +15,9 @@ const domElems = {
     links: document.querySelectorAll('.link-list-repair'),
     popup: document.querySelector('.popup.popup-repair-types'),
     close: document.querySelector('.popup.popup-repair-types > .close')
+  },
+  inputs: {
+    phones: [...document.querySelectorAll('input[name="phone"]')]
   }
 };
 

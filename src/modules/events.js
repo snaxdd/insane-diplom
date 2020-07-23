@@ -4,6 +4,8 @@ import toggle from './togglePhone';
 import menu from './toggleMenu';
 import smoothScroll from './smoothScroll';
 import repairModal from './repairModal';
+import mask from './phoneMask';
+import domElems from './DOMElements';
 
 document.body.addEventListener('click', event => {
   let target = event.target;
@@ -47,6 +49,16 @@ document.body.addEventListener('click', event => {
   } else if (target.closest('.close-repair')) {
     repairModal.hide();
   }
+});
+
+document.body.addEventListener('input', event => {
+  let target = event.target;
+
+  //Phone mask
+  if (domElems.inputs.phones.includes(target)) {
+    mask.valid(target);
+  }
+  
 });
 
 window.addEventListener('resize', () => {
