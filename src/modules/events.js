@@ -1,11 +1,14 @@
 'use strict';
 
+import SendForm from './sendForm';
+
 import toggle from './togglePhone';
 import menu from './toggleMenu';
 import smoothScroll from './smoothScroll';
 import repairModal from './repairModal';
 import mask from './phoneMask';
 import domElems from './DOMElements';
+import { dirname } from 'path';
 
 document.body.addEventListener('click', event => {
   let target = event.target;
@@ -34,7 +37,7 @@ document.body.addEventListener('click', event => {
     smoothScroll(target);
     menu.hide();
   }
-  
+
   //Scroll to top - footer button
   if (target.closest('.button-footer')) {
     event.preventDefault();
@@ -49,6 +52,22 @@ document.body.addEventListener('click', event => {
   } else if (target.closest('.close-repair')) {
     repairModal.hide();
   }
+
+  //Send form
+  if (target.closest('form')) {
+    if ([...target.classList].includes('send-form')) {
+      event.preventDefault();
+      target = target.closest('form');
+
+      try {
+        const form = new SendForm(target, `${__dirname}server.php`);
+        form.getData();
+        form.sendData();
+      } catch (err) {
+        console.error('Ошибка:', err);
+      }
+    }
+  }
 });
 
 document.body.addEventListener('input', event => {
@@ -58,7 +77,7 @@ document.body.addEventListener('input', event => {
   if (domElems.inputs.phones.includes(target)) {
     mask.valid(target);
   }
-  
+
 });
 
 window.addEventListener('resize', () => {
