@@ -8,7 +8,9 @@ import smoothScroll from './smoothScroll';
 import repairModal from './repairModal';
 import mask from './phoneMask';
 import domElems from './DOMElements';
+import popupOpen from './popupOpen';
 import { dirname } from 'path';
+import openPopup from './popupOpen';
 
 document.body.addEventListener('click', event => {
   let target = event.target;
@@ -67,6 +69,11 @@ document.body.addEventListener('click', event => {
         console.error('Ошибка:', err);
       }
     }
+  }
+
+  //Privacy popup
+  if (target.closest('.link-privacy')) {
+    openPopup(domElems.popup.privacy);
   }
 });
 

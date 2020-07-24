@@ -18,6 +18,9 @@ const domElems = {
   },
   inputs: {
     phones: [...document.querySelectorAll('input[name="phone"]')]
+  },
+  popup: {
+    privacy: document.querySelector('.popup.popup-privacy')
   }
 };
 
